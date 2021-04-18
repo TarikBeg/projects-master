@@ -1,0 +1,56 @@
+<div class="tvShows card list mt-3">
+  <div class="card-body p-0">
+    <div class="d-flex flex-wrap search p-3">
+      <div class="input-icon left-icon flex-fill mr-2">
+        <i class="fa fa-search"></i>
+        <input focus type="text" [formControl]="searchControl" name="keyword"
+          placeholder="Please type search pattern..." class="form-control form-control-lg" />
+      </div>
+    </div>
+    <app-nav></app-nav>
+
+    <hr class="m-0">
+    <div class="col d-flex flex-wrap search additional-filters">
+      <div class="col-2">
+        <label class="placeholder-label"></label>
+        <button (click)="searchTvShows()" type="button" class="btn btn-primary btn-block flex-fill">
+          Refresh
+          <i class="fa fa-refresh"></i>
+        </button>
+      </div>
+    </div>
+    <hr class="m-0">
+    <div class="mb-2 notification error" *ngFor="let error of errors">
+      {{error}}
+    </div>
+    <div class="card-columns p-3" *ngIf="tvShows?.records">
+      <div class="card" *ngFor="let tvShow of tvShows.records">
+        <img class="card-img-top" [src]="tvShow.coverImage" alt="{{tvShow.title}}">
+        <div class="card-body">
+          <p>{{tvShow.title}}</p>
+          <span [title]="tvShow.description"
+            class="primary link font-weight-bolder description mb-4">{{tvShow.description}}</span>
+        </div>
+        <div class="card-body action-bar">
+          <star-rating [rating]="tvShow.rating"></star-rating>
+        </div>
+      </div>
+    </div>
+    <div class="col d-flex justify-content-center align-items-center flex-column h-300px font-size-20"
+      *ngIf="!tvShows?.paginationInfo?.total">
+      <span class="mb-3 text-secondary-color">
+        We are not able to find any user for query
+        '<b>{{searchControl.value}}</b>'. Please try another keyword.
+      </span>
+      <i class="font-size-150 text-secondary-color fa fa-frown-o"></i>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <button *ngIf="tvShows.paginationInfo.total !== tvShows.records.length || searchControl.value !== ''"
+      (click)="getTvShows(keyword, true)" class="btn btn-secondary">
+      <i class="fa fa-arrow-down"></i>
+      Load More
+    </button>
+  </div>
+</div>

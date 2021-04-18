@@ -1,0 +1,123 @@
+@import "variables";
+
+.movies {
+  &.list {
+    .card-columns {
+      max-height: 100%;
+      align-content: flex-start;
+      display: flex;
+      flex-wrap: wrap;
+
+      .card {
+        width: calc(100%/4 - 25px);
+        margin: 5px;
+        border-radius: 5px;
+        border: 1px solid #dee2e6;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+          border: 1px solid #ffd3d7;
+        }
+
+        .card-body {
+          display: flex;
+          flex-direction: column;
+          flex: 1 1;
+          text-align: center;
+          align-items: center;
+          word-break: break-word;
+
+          .card-title {
+            color: $color-applicita-orange;
+            margin: 0;
+            font-weight: 700;
+          }
+
+          .description {
+            color: $color-info-blue;
+            width: 225px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+
+          &.action-bar {
+            flex-direction: row;
+            justify-content: space-evenly;
+            font-size: 30px;
+            color: $color-info-blue;
+            width: 200px;
+            align-items: flex-end;
+
+            a {
+              color: $color-applicita-orange;
+
+              &:hover {
+                color: $color-primary-button-hover;
+              }
+            }
+          }
+        }
+
+        >.card-img-top {
+          object-fit: cover;
+          border-radius: 50%;
+          width: 150px;
+          height: 150px;
+          align-self: center;
+          margin-top: 25px;
+        }
+      }
+    }
+
+    .additional-filters {
+      padding-left: 0rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .placeholder-label {
+      min-height: 17px;
+    }
+  }
+
+  &.edit {
+    .delete-action {
+      color: $color-danger-red;
+      font-size: 25px;
+    }
+
+    .form-group-inline {
+      display: flex;
+      width: 100%;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      justify-content: space-between;
+
+      &:first-of-type {
+        padding-top: 20px;
+      }
+
+      >.form-group {
+        width: 100%;
+      }
+    }
+  }
+}
+
+/* Firefox adaptation */
+.firefox {
+  &.desktop {
+    .movies {
+      &.list {
+        .card-columns {
+          .card {
+            width: 244px;
+          }
+        }
+      }
+    }
+  }
+}
